@@ -59,6 +59,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
   },
@@ -79,7 +80,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1"
+    }
   }
 }

@@ -5,6 +5,7 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
+    "webpackConfigPath": "webpack.config.js",
     "tsConfigPath": "apps/microservices-monorepo-nestjs/tsconfig.app.json"
   },
   "monorepo": true,
@@ -26,6 +27,15 @@
       "sourceRoot": "apps/microservices-monorepo-nestjs/src",
       "compilerOptions": {
         "tsConfigPath": "apps/microservices-monorepo-nestjs/tsconfig.app.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
       }
     }
   }
