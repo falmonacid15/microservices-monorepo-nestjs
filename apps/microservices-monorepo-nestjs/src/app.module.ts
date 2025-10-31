@@ -1,19 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'AUTH_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          host: process.env.AUTH_MS_HOST || 'localhost',
-          port: parseInt(process.env.AUTH_MS_PORT as string) || 3001,
-        },
-      },
-    ]),
-  ],
+  imports: [AuthModule],
   controllers: [],
   providers: [],
 })
