@@ -2,8 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AuthServiceModule } from './auth-service.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ValidationPipe } from '@nestjs/common';
-import { HttpToRpcExceptionFilter } from './filters/http-to-rpc-exception.filter';
-import { PrismaExceptionFilter } from '@app/prisma';
+import { PrismaErrorInterceptor } from '@app/prisma';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -18,10 +17,7 @@ async function bootstrap() {
   );
   app.useGlobalPipes(new ValidationPipe());
 
-  app.useGlobalFilters(
-    new HttpToRpcExceptionFilter(),
-    new PrismaExceptionFilter(),
-  );
+  app.useGlobalInterceptors(new PrismaErrorInterceptor());
   await app.listen();
 }
 bootstrap();
